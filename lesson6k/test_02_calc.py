@@ -22,16 +22,11 @@ def test_calculate_with_delay(chrome_driver):
     delay_field.send_keys("45")
 
     # Кнопки калькулятора
-    button_seven = driver.find_element(By.XPATH, '//button[@data-value="7"]')
-    button_plus = driver.find_element(By.XPATH, '//button[@data-value="+"]')
-    button_eight = driver.find_element(By.XPATH, '//button[@data-value="8"]')
-    button_equals = driver.find_element(By.XPATH, '//button[@data-value="="]')
+    driver.find_element(By.XPATH, '//button[@data-value="7"]').click()
+    driver.find_element(By.XPATH, '//button[@data-value="+"]').click()
+    driver.find_element(By.XPATH, '//button[@data-value="8"]').click()
+    driver.find_element(By.XPATH, '//button[@data-value="="]').click()
 
-    # Вычисления
-    button_seven.click()
-    button_plus.click()
-    button_eight.click()
-    button_equals.click()
 
     # Ожидание вывода результата
     wait = WebDriverWait(driver, 50)
