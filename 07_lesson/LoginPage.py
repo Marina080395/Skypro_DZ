@@ -14,6 +14,9 @@ class LoginPage:
 
     def login(self, username, password):
         """Авторизоваться в системе."""
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(self.username_field)
+        )
         self.driver.find_element(*self.username_field).send_keys(username)
         self.driver.find_element(*self.password_field).send_keys(password)
         self.driver.find_element(*self.login_button).click()

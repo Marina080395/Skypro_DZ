@@ -17,8 +17,14 @@ class ProductsPage:
             "onesie": self.onesie_add_button
         }
         for item in items:
-            self.driver.find_element(*elements[item]).click()
+            element = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(elements[item])
+            )
+            element.click()
 
     def go_to_cart(self):
         """Перейти в корзину."""
-        self.driver.find_element(*self.cart_link).click()
+        cart = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.cart_link)
+        )
+        cart.click()
