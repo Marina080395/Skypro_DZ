@@ -2,8 +2,8 @@ from empl import Company
 from EmplTable import EmplTable
 import pytest
 
-api = Company("https://x-clients-be.onrender.com")
-db = EmplTable("postgresql+psycopg2://x_clients_db_3fmx_user:mzoTw2Vp4Ox4NQH0XKN3KumdyAYE31uq@dpg-cour99g21fec73bsgvug-a.oregon-postgres.render.com/x_clients_db_3fmx")
+api = Company("http://5.101.50.27:8000")
+db = EmployeeTable("postgresql://x_clients_db_3fmx_user:mzoTw2Vp4Ox4NQH0XKN3KumdyAYE31uq@dpg-cour99g21fec73bsgvug-a.oregon-postgres.render.com/x_clients_db_3fmx")
 
 def setup_module(module):
     db.create_table()
