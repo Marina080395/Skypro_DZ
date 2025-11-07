@@ -8,19 +8,16 @@ class ShopPage:
     """Класс для работы онлайн корзины."""
 
     @allure.feature("Тестирование интернет-магазина")
-    @allure.title("Полный цикл покупки товара")
-    @allure.description("Тест проверяет корректность работы "
-                        "и отображения информации в корзине")
     @allure.feature("Result Shop")
     def __init__(self, driver):
         self.driver = driver
         self.url = "https://www.saucedemo.com/"
 
-    with allure.step("Открыть страницу с формой"):
+    @allure.step("Открыть страницу с формой"):
         def open(self):
             self.driver.get(self.url)
 
-    with allure.step("Авторизация пользователя"):
+    @allure.step("Авторизация пользователя"):
         def authorization(self):
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((
@@ -33,7 +30,7 @@ class ShopPage:
             self.driver.find_element(
                 By.CSS_SELECTOR, "#login-button").click()
 
-    with allure.step("Добавить в корзину"):
+    @allure.step("Добавить в корзину"):
         def add_to_cart(self):
             items = [
                 "Sauce Labs Backpack",
@@ -47,17 +44,17 @@ class ShopPage:
                            f"//div[text()='{item}']/ancestor:"
                            f":div[@class='inventory_item']//button",))
                 ).click()
-    with allure.step("В корзине"):
+    @allure.step("В корзине"):
         def in_cart(self):
             self.driver.find_element(
                 By.CSS_SELECTOR, ".shopping_cart_link"
             ).click()
 
-    with allure.step("Начать оформление заказа"):
+    @allure.step("Начать оформление заказа"):
         def click_checkout(self):
             self.driver.find_element(By.CSS_SELECTOR, "#checkout").click()
 
-    with allure.step("Заполнение данных для доставки"):
+    @allure.step("Заполнение данных для доставки"):
         """Заполнение данных для доставки."""
     def fill_form(self, first_name, last_name, postal_code):
         self.driver.find_element(
@@ -73,7 +70,7 @@ class ShopPage:
             By.CSS_SELECTOR, "#continue"
         ).click()
 
-    with allure.step("Функция для проверки итоговой суммы "):
+    @allure.step("Функция для проверки итоговой суммы "):
         """ Функция для вывода итоговой стоимости покупок """
     def checking_total_amount(self):
         total = (
