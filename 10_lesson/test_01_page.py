@@ -1,6 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 from form_page import FormPage
 import allure
 
@@ -17,8 +15,7 @@ import allure
 """)
 def test_01_form():
     with allure.step("Инициализация драйвера и страницы"):
-        driver = webdriver.Chrome(
-            service=ChromeService(ChromeDriverManager().install()))
+        driver = webdriver.Chrome()
         form_page = FormPage(driver)
 
     with allure.step("Открытие страницы с формой"):

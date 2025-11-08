@@ -13,49 +13,48 @@ class ShopPage:
         self.driver = driver
         self.url = "https://www.saucedemo.com/"
 
-    @allure.step("Открыть страницу с формой"):
-        def open(self):
-            self.driver.get(self.url)
+    @allure.step("Открыть страницу с формой")
+    def open(self):
+        self.driver.get(self.url)
 
-    @allure.step("Авторизация пользователя"):
-        def authorization(self):
-            WebDriverWait(self.driver, 10).until(
+    @allure.step("Авторизация пользователя")
+    def authorization(self):
+        WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((
                     By.CSS_SELECTOR, "#user-name"))
             ).send_keys("standard_user")
 
-            self.driver.find_element(
+        self.driver.find_element(
                 By.CSS_SELECTOR, "#password"
             ).send_keys("secret_sauce")
-            self.driver.find_element(
+        self.driver.find_element(
                 By.CSS_SELECTOR, "#login-button").click()
 
-    @allure.step("Добавить в корзину"):
-        def add_to_cart(self):
-            items = [
+    @allure.step("Добавить в корзину")
+    def add_to_cart(self):
+        items = [
                 "Sauce Labs Backpack",
                 "Sauce Labs Bolt T-Shirt",
                 "Sauce Labs Onesie",
             ]
-            for item in items:
-                WebDriverWait(self.driver, 10).until(
+        for item in items:
+            WebDriverWait(self.driver, 10).until(
                    EC.element_to_be_clickable(
                        (By.XPATH,
                            f"//div[text()='{item}']/ancestor:"
                            f":div[@class='inventory_item']//button",))
                 ).click()
-    @allure.step("В корзине"):
-        def in_cart(self):
-            self.driver.find_element(
+    @allure.step("В корзине")
+    def in_cart(self):
+        self.driver.find_element(
                 By.CSS_SELECTOR, ".shopping_cart_link"
             ).click()
 
-    @allure.step("Начать оформление заказа"):
-        def click_checkout(self):
-            self.driver.find_element(By.CSS_SELECTOR, "#checkout").click()
+    @allure.step("Начать оформление заказа")
+    def click_checkout(self):
+        self.driver.find_element(By.CSS_SELECTOR, "#checkout").click()
 
-    @allure.step("Заполнение данных для доставки"):
-        """Заполнение данных для доставки."""
+    @allure.step("Заполнение данных для доставки")
     def fill_form(self, first_name, last_name, postal_code):
         self.driver.find_element(
             By.CSS_SELECTOR, "#first-name"
@@ -70,8 +69,7 @@ class ShopPage:
             By.CSS_SELECTOR, "#continue"
         ).click()
 
-    @allure.step("Функция для проверки итоговой суммы "):
-        """ Функция для вывода итоговой стоимости покупок """
+    @allure.step("Функция для проверки итоговой суммы ")
     def checking_total_amount(self):
         total = (
             WebDriverWait(self.driver, 10)

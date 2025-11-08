@@ -1,6 +1,4 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
 from calculator_page import CalculatorPage
 import allure
 
@@ -16,9 +14,7 @@ import allure
 """)
 def test_02_calc():
     with allure.step("Инициализация драйвера и открытие страницы"):
-        driver = webdriver.Chrome(
-            service=ChromeService(ChromeDriverManager(
-            ).install()))
+        driver = webdriver.Chrome()
     calculator_page = CalculatorPage(driver)
 
     with allure.step("Открыть страницу калькулятора"):

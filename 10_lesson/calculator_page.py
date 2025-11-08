@@ -30,7 +30,7 @@ class CalculatorPage:
         """Установить задержку вычислений"""
         delay_input = self.driver.find_element(By.CSS_SELECTOR, "#delay")
         delay_input.clear()
-        delay_input.send_keys("45")
+        delay_input.send_keys("4")
 
     @allure.step("Выполнить операцию 7 + 8")
     def get_buttons(self):

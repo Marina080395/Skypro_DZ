@@ -1,6 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 from shop_page import ShopPage
 import allure
 
@@ -15,13 +13,9 @@ import allure
 3. Оформление заказа
 4. Проверка итоговой суммы
 """)
-
-
 def test_shop_page():
     with allure.step("Инициализация драйвера и открытие страницы"):
-        driver = webdriver.Chrome(
-            service=ChromeService(ChromeDriverManager(
-            ).install()))
+        driver = webdriver.Chrome()
         shop_page = ShopPage(driver)
 
     with allure.step("Открытие главной страницы магазина"):
