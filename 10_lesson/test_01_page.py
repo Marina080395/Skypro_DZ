@@ -16,27 +16,27 @@ import allure
 4. Проверку подсветки полей
 """)
 def test_01_form():
-    @allure.step("Инициализация драйвера и страницы"):
-    driver = webdriver.Chrome(
-    service=ChromeService(ChromeDriverManager().install()))
-    form_page = FormPage(driver)
+    with allure.step("Инициализация драйвера и страницы"):
+        driver = webdriver.Chrome(
+            service=ChromeService(ChromeDriverManager().install()))
+        form_page = FormPage(driver)
 
-    @allure.step("Открытие страницы с формой"):
-    form_page.open()
+    with allure.step("Открытие страницы с формой"):
+        form_page.open()
 
-    @allure.step("Заполнение формы данными"):
-    form_page.fill_form(
+    with allure.step("Заполнение формы данными"):
+        form_page.fill_form(
         'Марина', 'Нагиева', 'Лермонтова, 55-3',
         'test@skypro.com', '+79100879675',
         'Чёрмоз', 'Россия', 'QA',
         'SkyPro')
 
-    @allure.step("Нажатие кнопки 'Submit'"):
-    form_page.submit_form()
+    with allure.step("Нажатие кнопки 'Submit'"):
+        form_page.submit_form()
 
-    @allure.step("Проверка подсветки обязательных полей"):
-    form_page.color_check_red()
-    form_page.color_check_green()
+    with allure.step("Проверка подсветки обязательных полей"):
+        form_page.color_check_red()
+        form_page.color_check_green()
 
-    @allure.step("Закрытие браузера"):
-    driver.quit()
+    with allure.step("Закрытие браузера"):
+        driver.quit()

@@ -18,34 +18,34 @@ import allure
 
 
 def test_shop_page():
-    @allure.step("Инициализация драйвера и открытие страницы"):
-    driver = webdriver.Chrome(
+    with allure.step("Инициализация драйвера и открытие страницы"):
+        driver = webdriver.Chrome(
             service=ChromeService(ChromeDriverManager(
             ).install()))
-    shop_page = ShopPage(driver)
+        shop_page = ShopPage(driver)
 
-    @allure.step("Открытие главной страницы магазина"):
-    shop_page.open()
+    with allure.step("Открытие главной страницы магазина"):
+        shop_page.open()
 
-    @allure.step("Авторизация пользователя"):
-    shop_page.authorization()
+    with allure.step("Авторизация пользователя"):
+        shop_page.authorization()
 
-    @allure.step("Добавить в корзину"):
-    shop_page.add_to_cart()
+    with allure.step("Добавить в корзину"):
+        shop_page.add_to_cart()
 
-    @allure.step("В корзине"):
-    shop_page.in_cart()
+    with allure.step("В корзине"):
+        shop_page.in_cart()
 
-    @allure.step("Начать оформление заказа"):
-    shop_page.click_checkout()
+    with allure.step("Начать оформление заказа"):
+        shop_page.click_checkout()
 
-    @allure.step("Заполнение данных для доставки"):
-    shop_page.fill_form(
+    with allure.step("Заполнение данных для доставки"):
+        shop_page.fill_form(
             first_name="Марина", last_name="Нагиева",
             postal_code="617040")
 
-    @allure.step("Проверка итоговой суммы"):
-    shop_page.checking_total_amount()
+    with allure.step("Проверка итоговой суммы"):
+        shop_page.checking_total_amount()
 
-    @allure.step("Закрыть браузер"):
-    driver.quit()
+    with allure.step("Закрыть браузер"):
+        driver.quit()
